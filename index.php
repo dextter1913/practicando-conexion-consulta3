@@ -78,23 +78,43 @@
             
         </form><br><br> 
 
+            <?php 
+                if (isset($_POST['btnbuscar'])) {
+                    $_id = $_POST['id'];
+                    include("./clases/abrirconexion.php");
+                    
+                    $resultado = mysqli_query($conexion, ("SELECT * FROM $tb2 WHERE id = $_id"));
+
+                        while ($consulta = mysqli_fetch_array($resultado)) {
+                            echo "
+                            <table class=\"table table-striped\">
+                            <tr>
+                            <td><center><b>ID</b></center></td>
+                            <td><center><b>Nombre</b></center></td>
+                            <td><center><b>Apellido</b></center></td>
+                            <td><center><b>Telefono</b></center></td>
+                            <td><center><b>Direccion</b></center></td>
+                            <td><center><b>Usuario</b></center></td>
+                            </tr>
+                            <tr>
+                            <td><center><b>".$consulta['id']."</b></center></td>
+                            <td><center><b>".$consulta['nombre']."</b></center></td>
+                            <td><center><b>".$consulta['apellido']."</b></center></td>
+                            <td><center><b>".$consulta['telefono']."</b></center></td>
+                            <td><center><b>".$consulta['direccion']."</b></center></td>
+                            <td><center><b>".$consulta['user']."</b></center></td>
+                            </tr>
+                            </table>    
+                            
+                            ";
+                        }
+                    include("./clases/cerrarconexion.php");
 
 
+                }
+            
+            ?>
 
-
-
-
-
-    <table class="table table-striped">
-    <tr>
-    <td><center><b>ID</b></center></td>
-    <td><center><b>Nombre</b></center></td>
-    <td><center><b>Apellido</b></center></td>
-    <td><center><b>Telefono</b></center></td>
-    <td><center><b>Direccion</b></center></td>
-    <td><center><b>Usuario</b></center></td>
-    </tr>
-    </table>
         </div>
 
 
